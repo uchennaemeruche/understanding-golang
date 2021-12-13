@@ -6,14 +6,14 @@ This repo houses some Golang introductory files, sample codes and implementation
 
 - [Section 1: Golang Introduction and Setup(Using Docker)](#golang-introduction-and-setup)
 - [Section 2: Declaring variables and Assignments in Golang]
-- [Section 3: Data types in Golang - Strings, Numbers, Arrays, Slices, Maps, Interfaces etc]
+- [Section 3: Types in Golang - Strings, Numbers, Arrays, Slices, Maps, Interfaces etc]
 - [Section 4: Golang Control Structures: Looping and Iteration in Golang]
 - [Section 5: Golang Control Structures: Booleans and Conditionals in Golang (If/else, switch statements)]
 - [Section 6: Functions in Golang]
 - [Section 7: Reciever Functions in Golang]
 - [Section 8: Structs and Custom Types in Golang]
 - [Section 9: Structs and Custom Types in Golang]
-- [Section 9: Interfaces in Go (Polymorphism, )]
+- [Section 10: Interfaces in Go ](#interfaces-in-go)
 
 # Golang Introduction and Setup
 
@@ -43,3 +43,17 @@ Similarly, we can run the container in interactive mode as follows:
 The above command will take you into the container where you can now start running your go applications.
 
 > TO confirm that Golang has been installed on the container run `go version`
+
+# Interfaces in Go
+
+Interface is one of Go's implementation of class inheritance. The other being **embedding** Embedding is a limited form of inheritance which allows types to share data and code. Embedding can be viewed as an automated form of composition
+
+Interfaces are types made up of named collection of method signatures. In Go, interfaces provide a way to specify the behaviour/methods of an object: _If something can do this, then it fits in here_. They define contracts that certain objects or types should adhere to. Interfaces define what methods a type should have and the type decides how to implement these methods.
+
+> Golang ships with a nominal type system, however, Interfaces provide a limited form of structural typing(In a structural type sytem, compatibility and equivalence are determined by the actual structure or definitions of the type).
+>
+> > This is a core concept in Go’s type system; instead of designing our abstractions in terms of what kind of data our types can hold, we design our abstractions in terms of what actions our types can execute.
+
+When a type provides definitions for all the methods in an interface, it is said to implement the interface.
+
+> To implement an interface in Go, we only need to implement all the methods in the interface. Note that there is no **implement** keyword in Go; whether or not a type satisfies an interface is determined automatically.

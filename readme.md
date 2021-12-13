@@ -105,3 +105,28 @@ func main() {
 ```
 
 In the above snippet, the Toyota type implements the Car interface by providing definition for all the method set in the interface.
+i.e By adding the methods Drive(), Park() and Reverse() to the receiver type _Toyota_, the Toyota type is said to implement the Car interface.
+
+## The interface{} type (empty interface)
+
+The interface{} type, (empty interface) is the interface that has no methods.
+
+> Since there is no **implements** keyword in Go, all types implement at least zero methods, and since satisfying an interface is done automatically, all types satify the empty interface.
+>
+> > That means given a function that takes an interface{} as a parameter, you can pass any value to that function when calling it.
+
+```
+func Foo(param interface{}){
+
+}
+
+```
+
+Looking at the function above, one would say that the parameter _param_ is of any type. I mean the empty interface _interface{}_ is supposed to represent a generic, right!.
+
+> > OOps!! Not really, I mean not so fast. The value passed to the function must in fact be of type interface{}
+
+This is very important to note because at runtime, all values have exactly one type. So under the hood, the Go runtime will try to perform a type conversion and convert the value to an interface{} type.
+
+This article [Go Data Structures: Interfaces](https://research.swtch.com/interfaces) explains the conversion concept in details.
+But the key takeaway is that interface values are represented as a two-word pair. The first being a pointer to the metadata about the type stored in the interface. And the second being a pointer to the actual data held by the value.

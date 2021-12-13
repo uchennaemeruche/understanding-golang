@@ -10,10 +10,9 @@ This repo houses some Golang introductory files, sample codes and implementation
 - [Section 4: Golang Control Structures: Looping and Iteration in Golang]
 - [Section 5: Golang Control Structures: Booleans and Conditionals in Golang (If/else, switch statements)]
 - [Section 6: Functions in Golang]
-- [Section 7: Reciever Functions in Golang]
+- [Section 7: Receiver Functions in Golang]
 - [Section 8: Structs and Custom Types in Golang]
-- [Section 9: Structs and Custom Types in Golang]
-- [Section 10: Interfaces in Go ](#interfaces-in-go)
+- [Section 9: Interfaces in Go ](#interfaces-in-go)
 
 # Golang Introduction and Setup
 
@@ -46,7 +45,7 @@ The above command will take you into the container where you can now start runni
 
 # Interfaces in Go
 
-Interface is one of Go's implementation of class inheritance. The other being **embedding** Embedding is a limited form of inheritance which allows types to share data and code. Embedding can be viewed as an automated form of composition
+Interface is one of Go's implementation of class inheritance. The other being **embedding**. Embedding is a limited form of inheritance which allows types to share data and code. Embedding can be viewed as an automated form of composition
 
 Interfaces are types made up of named collection of method signatures. In Go, interfaces provide a way to specify the behaviour/methods of an object: _If something can do this, then it fits in here_. They define contracts that certain objects or types should adhere to. Interfaces define what methods a type should have and the type decides how to implement these methods.
 
@@ -57,3 +56,52 @@ Interfaces are types made up of named collection of method signatures. In Go, in
 When a type provides definitions for all the methods in an interface, it is said to implement the interface.
 
 > To implement an interface in Go, we only need to implement all the methods in the interface. Note that there is no **implement** keyword in Go; whether or not a type satisfies an interface is determined automatically.
+
+For example, A Car interface can define certain methods such as Drive(), Park() and Reverse(). Now any type that can provide definitions for these methods satisfies the Car interface and that **type** is said to implement the Car interface:
+
+```
+type Car interface {
+	Drive() string
+	Park() string
+	Reverse() bool
+}
+
+type Toyota struct {
+	color string
+	model string
+	speed int
+}
+
+func (t Toyota) Drive() string {
+	str := fmt.Sprintf("Your %v Toyota car is running on %vkm/hr", t.model, t.speed)
+	return str
+}
+
+func (t Toyota) Park() string {
+	elapsedTime := 10.0
+	distanceTravelled := float64(t.speed) * elapsedTime
+	str := fmt.Sprintf("%v %v Toyota covered %vkm", t.color, t.model, distanceTravelled)
+	return str
+}
+
+func (t Toyota) Reverse() bool {
+	return true
+}
+
+func main() {
+	cars := []Toyota{
+		{color: "red", model: "2007", speed: 70},
+		{color: "blue", model: "2010", speed: 120},
+	}
+
+	for _, car := range cars {
+		fmt.Println(car.Drive())
+		fmt.Println(car.Park())
+		fmt.Println(car.Reverse())
+	}
+
+}
+
+```
+
+In the above snippet, the Toyota type implements the Car interface by providing definition for all the method set in the interface.

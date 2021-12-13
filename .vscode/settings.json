@@ -1,0 +1,9 @@
+{
+    "gopls" : {
+        "build.experimentalWorkspaceModule": true,
+        "ui.completion.usePlaceholders": true ,
+        
+    },
+    
+    
+}
